@@ -12,7 +12,7 @@ Works with Windows 10
 - You can edit output file name.
 - Use "Convert" button.
 
-If no error, a now file (output file) is created.
+If no error, a new file (output file) is created.
 
 What the applcation does :
 
