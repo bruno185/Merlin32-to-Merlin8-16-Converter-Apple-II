@@ -1,4 +1,5 @@
 # Merlin32-to-Merlin8-16-Converter-Apple-II-
+
 Delphi program to transform Merlin 32 source filles to Merlin8/16 source files, directly usable with Ciderpress
 
 Usage :
@@ -14,8 +15,10 @@ Works with Windows 10
 If no error, a now file (output file) is created.
 
 What the applcation does :
-Replace all CRLF (carriage linefeed chars) by CR
-Suppress all uncessary spaces.
-Add 'A2' to file name, before extension.
-Add #040000 at the end of file name, so it can be used by Cidepress to import file in an image disk. The file will have TEXT type, no need to manually modify type.
+Replace all CRLF (carriage linefeed chars) by CR.
 
+- Replace all tabs by spaces.
+- Suppress all uncessary spaces.
+- Add 'A2' to file name, before extension.
+- Add #040000 at the end of file name, so it can be used by Cidepress to import file in an image disk. The file will have TEXT type, no need to manually modify type.
+- It does not modify comment lines (first char being \* or ;), it just trim these strings.
