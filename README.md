@@ -15,8 +15,8 @@ Works with Windows 10
 If no error, a now file (output file) is created.
 
 What the applcation does :
-Replace all CRLF (carriage linefeed chars) by CR.
 
+- Replace all CRLF (carriage linefeed chars) by CR.
 - Replace all tabs by spaces.
 - Suppress all uncessary spaces.
 - Add 'A2' to file name, before extension.
