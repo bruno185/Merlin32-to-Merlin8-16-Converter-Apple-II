@@ -52,82 +52,108 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  filin, filout : file of byte;
+  filin, filout : textfile;
   space : boolean;
-  c : byte;
+  c : char;
+  s : string;
+  i : integer;
   inputlength, readbytes : longint;
 
 begin
   try
-  try
-  // init. action
-  button1.Enabled := false;
-  ProgressBar1.Visible := true;
-  // get input file size
-  inputlength :=  TextfileSize(Edit1.Text);
-  // file size = 0 : exit
-  if inputlength=0 then
-  raise Exception.Create('File size = 0');
+    try
+    // init. action
+    button1.Enabled := false;
+    ProgressBar1.Visible := true;
+    // get input file size
+    inputlength :=  TextfileSize(Edit1.Text);
+    // file size = 0 : exit
+    if inputlength=0 then
+    raise Exception.Create('File size = 0');
 
-  assignfile(filin,Edit1.Text);
-  reset(filin);
-  assignfile(filout,Edit2.Text);
-  rewrite(filout);
+    assignfile(filin,Edit1.Text);
+    reset(filin);
+    assignfile(filout,Edit2.Text);
+    rewrite(filout);
 
-  space := false;
-  ProgressBar1.Position := 0;
-  readbytes := 0;
+    space := false;
+    ProgressBar1.Position := 0;
+    readbytes := 0;
 
-  while not(eof(filin))  do
-  begin
-  // read one byte from input file
-    read(filin,c);
-  // update counter
-    readbytes := readbytes + 1;
+    while not(eof(filin))  do
+      begin
+        readln(filin,s);
+        readbytes := readbytes + length(s);
 
-    // update progreebar
-    if (readbytes mod 100 =0) then
-    begin
-      ProgressBar1.Position :=  (readbytes * 100) div  inputlength;
-      Application.ProcessMessages;
+        // update progreebar
+        ProgressBar1.Position :=  (readbytes * 100) div  inputlength;
+        Application.ProcessMessages;
+
+
+        // case of empty string
+        if s = '' then
+          begin
+            write(filout, chr(13));
+          end
+          else
+            begin
+            // replace tabs by spaces
+            for i := 1 to length(s) do if s[i] = chr(9) then   s[i] := ' ';
+
+            // case of comment
+            c :=  trim(s)[1];
+            if (c = '*') or (c = ';') then
+              begin
+                write(filout, trim(s)+chr(13));
+              end
+
+              else
+              begin
+                // process string
+                space := false;
+                for i := 1 to length(s) do
+                // case of spaces : no more than 2 consecutive spaces
+                if  s[i] = ' ' then
+                  begin
+                    if space = false then    // no space character before
+                      begin
+                        write(filout,' ') ;
+                        space := true;       // update flag for next char.
+                      end
+                    else  space := true;     // useless
+                  end
+                  else
+                // char <> space
+                  begin
+                    space := false;         // update flag for next char.
+                    if s[i] <> chr(10) then write(filout,s[i]);  // don't write line feed char.
+                  end;
+                  write(filout,chr(13));   // return at the end of line
+              end;
+
+        end;
     end;
-     if c = 9  then c := 32;
-    // cas byte = ' '
-    if c = 32 then
-    begin
-      if space = false then
-      begin   // previous byte wan not ' '
-        write(filout,c);
-        space := true;
+
+    ProgressBar1.Position := 100;
+    closefile(filin);
+    closefile(filout);
+    Application.MessageBox('Job''s done.','',0);
+    ProgressBar1.Visible := false;
+
+    except
+      begin
+        Application.MessageBox('Error !!','',0);
+        ProgressBar1.Visible := false;
       end;
-    end
-    else  // previous byte wan ' '
-    begin
-      if c <> 10 then write(filout,c);
-      space := false;
+
     end;
-  end;
+    finally
+      begin
+       button1.Enabled := true;
+       ProgressBar1.Position := 0;
+      end;
 
-  ProgressBar1.Position := 100;
-  closefile(filin);
-  closefile(filout);
-  Application.MessageBox('Job''s done.','',0);
-  ProgressBar1.Visible := false;
-
-  except
-    begin
-      Application.MessageBox('Error !!','',0);
-      ProgressBar1.Visible := false;
     end;
-
-  end;
-  finally
-    begin
-     button1.Enabled := true;
-     ProgressBar1.Position := 0;
-    end;
-
-  end;
 end;
 
 

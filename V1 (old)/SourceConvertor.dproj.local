@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/07/14 18:45:18.000.499,=C:\Users\salut\OneDrive\Documents\Embarcadero\Studio\Projets\Unit1.pas</Transaction>
+    <Transaction>2022/07/14 18:54:12.000.437,F:\Bruno\Dev\AppleWin\Merlin32ToAppleII\Unit1.dfm=C:\Users\salut\OneDrive\Documents\Embarcadero\Studio\Projets\Unit1.dfm</Transaction>
+    <Transaction>2022/07/14 18:54:12.000.437,F:\Bruno\Dev\AppleWin\Merlin32ToAppleII\Unit1.pas=C:\Users\salut\OneDrive\Documents\Embarcadero\Studio\Projets\Unit1.pas</Transaction>
+    <Transaction>2022/07/14 18:54:21.000.159,F:\Bruno\Dev\AppleWin\Merlin32ToAppleII\Project1.dproj=C:\Users\salut\OneDrive\Documents\Embarcadero\Studio\Projets\Project1.dproj</Transaction>
+    <Transaction>2022/07/17 15:09:55.000.089,F:\Bruno\Dev\AppleWin\Merlin32ToAppleII\SourceConvertor.dproj=F:\Bruno\Dev\AppleWin\Merlin32ToAppleII\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
