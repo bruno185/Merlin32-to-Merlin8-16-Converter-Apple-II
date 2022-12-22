@@ -91,7 +91,7 @@ begin
 
 
         // case of empty string
-        if s = '' then
+        if trim(s) = '' then
           begin
             write(filout, chr(13));
           end

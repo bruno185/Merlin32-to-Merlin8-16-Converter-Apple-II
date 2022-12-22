@@ -8,7 +8,7 @@ Works with Windows 10
 - Compile project using Delphi (Project file = SourceConvertor.dpr). I used Delphi 10.4 Community Edition
 - Or use pre compiled application in : Win32/Debug/SourceConvertor.exe
 - Launch application
-- Drag a Mercin32 source file on application. This action set de input file, and define the output file.
+- Drag a Merlin32 source file onto application window. This action set de input file, and define the output file.
 - You can edit output file name.
 - Use "Convert" button.
 
